@@ -1,9 +1,9 @@
 import {Outlet} from "react-router-dom";
 
-function OverviewPage() {
+function IssuesOverviewPage() {
     return (
         <div>Overview Page<Outlet /></div>
     )
 }
 
-export default OverviewPage;
+export default IssuesOverviewPage;
