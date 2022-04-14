@@ -22,6 +22,7 @@
   },
   "include": [
     "src",
+    "public",
     "src/images.d.ts"
   ]
 }
