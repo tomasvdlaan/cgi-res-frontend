@@ -1,14 +1,14 @@
+/* eslint-disable indent */
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 
 function NotFoundPage() {
 
-    const navigator = useNavigate();
-    const redirect = (route: string) => { navigator(route, { replace: true});};
-    
 
-	return (
-		<><div className="grid bg-light-gray place-items-center h-screen">
+
+
+    return (
+        <><div className="grid bg-light-gray place-items-center h-screen">
             <div className="object-top">
                 <img src={"/images/Error404.png"} alt="Error" />
 
@@ -35,9 +35,9 @@ function NotFoundPage() {
                     </div>
                 </div>
             </div>
-            </div></>
+        </div></>
 
-	);
+    );
 }
 
 
