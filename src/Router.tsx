@@ -1,7 +1,7 @@
 import {
 	BrowserRouter,
 	Routes,
-	Route
+	Route, Navigate
 } from "react-router-dom";
 import LoginPage from "./pages/login/LoginPage";
 import ReservationsOverviewPage from "./pages/reservations/overview/ReservationsOverviewPage";
@@ -31,6 +31,8 @@ function Router () {
 				<Route path="/issues/:issueId" element={<IssueDetailPage />} />
 				<Route path="/issues" element={<IssuesOverviewPage />} />
 
+				{/* NIET VERPLAATSEN!! */}
+				<Route path="*" element={<Navigate replace to="/404" />} />
 			</Routes>
 		</BrowserRouter>
 	);
