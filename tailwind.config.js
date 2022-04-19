@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ["src/**/*.{ts,js,tsx,jsx}"],
   theme: {
@@ -9,7 +11,15 @@ module.exports = {
       'purple': '#5236AB',
       'light-purple': '#EAEAF5',
     },
-    extend: {},
+    fontFamily: {
+      'SofiaProBold': ['Sofia Pro Bold', 'sans-serif'],
+      'SofiaProRegular': ['Sofia Pro Regular', 'sans-serif', ...defaultTheme.fontFamily.sans],
+      'SofiaProLight': ['Sofia Pro Light', 'sans-serif'],
+      'body': ['Sofia Pro Bold', 'sans-serif'],
+    },
+    extend: {
+
+    },
   },
   plugins: [
     function ({ addVariant }) {
