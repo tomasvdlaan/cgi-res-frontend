@@ -119,7 +119,7 @@ function HomePage() {
 				<button className="rounded-full bg-purple text-white p-4 w-full">Save Changes</button>
 			</div>
 			<Menu/>
-		</div>
+		</>
 	);
 }
 
