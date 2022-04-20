@@ -7,7 +7,7 @@ import React from "react";
 
 function HomePage() {
 	return (
-		<div className="">
+		<>
 			<div className="bg-light-gray p-6">
 				<div className="grid grid-cols-3 gap-2">
 					<div className="col-span-2">
