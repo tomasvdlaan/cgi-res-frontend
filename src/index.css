@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Sofia Pro Regular", sans-serif;
+        src: url("./fonts/Sofia Pro Regular Az.otf");
+    }
+}
+
+
+@layer base {
+    @font-face {
+        font-family: "Sofia Pro Bold", sans-serif;
+        src: url("./fonts/Sofia Pro Bold Az.otf");
+    }
+    @font-face {
+        font-family: "Sofia Pro Regular", sans-serif;
+        src: url("./fonts/Sofia Pro Regular Az.otf");
+    }
+    @font-face {
+        font-family: "Sofia Pro Light", sans-serif;
+        src: url("./fonts/Sofia Pro Light Az.otf");
+    }
+}
+
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
