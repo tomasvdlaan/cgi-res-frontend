@@ -1,11 +1,8 @@
-import {ClockIcon} from "@heroicons/react/outline";
-import {CalendarIcon} from "@heroicons/react/outline";
-import {LocationMarkerIcon} from "@heroicons/react/outline";
-import {StatusOnlineIcon} from "@heroicons/react/outline";
+import {LocationMarkerIcon, StatusOnlineIcon, CalendarIcon, ClockIcon} from "@heroicons/react/outline";
+import Menu from "../../glob-components/Menu";
+import DatePicker from "../../glob-components/DatePicker";
 
-import {HomeIcon} from "@heroicons/react/outline";
-import {UserGroupIcon} from "@heroicons/react/outline";
-import {ExclamationCircleIcon} from "@heroicons/react/outline";
+
 import React from "react";
 
 function HomePage() {
@@ -26,38 +23,10 @@ function HomePage() {
 					</figure>
 				</div>
 			</div>
-			<div className="overflow-x-auto no-scrollbar scroll snap-x">
-				<div className="inline-grid grid-flow-col gap-4 p-6 ">
-					<div className="rounded-md bg-white p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-center font-SofiaProBold">5</div>
-						<div className="text text-center font-SofiaProBold">Mon</div>
-					</div>
-					<div className="rounded-md bg-red p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-white text-center font-SofiaProBold">6</div>
-						<div className="text text-white text-center">Thu</div>
-					</div>
-					<div className="rounded-md bg-white p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-center font-SofiaProBold">7</div>
-						<div className="text text-center font-SofiaProBold">Mon</div>
-					</div>
-					<div className="rounded-md bg-white p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-center font-SofiaProBold">8</div>
-						<div className="text text-center font-SofiaProBold">Mon</div>
-					</div>
-
-					<div className="rounded-md bg-white p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-center font-SofiaProBold">9</div>
-						<div className="text text-center font-SofiaProBold">Mon</div>
-					</div>
-					<div className="rounded-md bg-white p-4 drop-shadow-md snap-center">
-						<div className="text-4xl text-center font-SofiaProBold">10</div>
-						<div className="text text-center font-SofiaProBold">Mon</div>
-					</div>
-				</div>
-			</div>
+			<DatePicker/>
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
-                Reservations
+				Reservations
 			</div>
 
 			<div className="overflow-x-auto no-scrollbar scroll snap-x">
@@ -70,21 +39,21 @@ function HomePage() {
 							<div className="flex justify-left items-center">
 								<ClockIcon className="h-7 w-7"/>
 								<div className="text-left text-sm">
-                                    12:00 <br className=""/>
-                                    18:00
+									12:00 <br className=""/>
+									18:00
 								</div>
 							</div>
 
 							<div className="flex justify-left items-center">
 								<CalendarIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    5 Mon
+									5 Mon
 								</div>
 							</div>
 							<div className="flex justify-left items-center">
 								<LocationMarkerIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    A1 - F2
+									A1 - F2
 								</div>
 							</div>
 						</div>
@@ -97,21 +66,21 @@ function HomePage() {
 							<div className="flex justify-left items-center">
 								<ClockIcon className="h-7 w-7"/>
 								<div className="text-left text-sm">
-                                    12:00 <br className=""/>
-                                    18:00
+									12:00 <br className=""/>
+									18:00
 								</div>
 							</div>
 
 							<div className="flex justify-left items-center">
 								<CalendarIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    5 Mon
+									5 Mon
 								</div>
 							</div>
 							<div className="flex justify-left items-center">
 								<LocationMarkerIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    A1 - F2
+									A1 - F2
 								</div>
 							</div>
 						</div>
@@ -124,21 +93,21 @@ function HomePage() {
 							<div className="flex justify-left items-center">
 								<ClockIcon className="h-7 w-7"/>
 								<div className="text-left text-sm">
-                                    12:00 <br className=""/>
-                                    18:00
+									12:00 <br className=""/>
+									18:00
 								</div>
 							</div>
 
 							<div className="flex justify-left items-center">
 								<CalendarIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    5 Mon
+									5 Mon
 								</div>
 							</div>
 							<div className="flex justify-left items-center">
 								<LocationMarkerIcon className="h-7 w-7"/>
 								<div className="text-lg ">
-                                    A1 - F2
+									A1 - F2
 								</div>
 							</div>
 						</div>
@@ -149,18 +118,7 @@ function HomePage() {
 			<div className="p-4 block fixed bottom-16 inset-x-0">
 				<button className="rounded-full bg-purple text-white p-4 w-full">Save Changes</button>
 			</div>
-
-			<div className="block fixed bottom-0 inset-x-0 p-4 grid grid-cols-3 gap-4 border-t-2 border-light-gray">
-				<a href="google.com" className="flex justify-center">
-					<HomeIcon className="h-7 w-7"/>
-				</a>
-				<a href="google.com" className="flex justify-center">
-					<UserGroupIcon className="h-7 w-7"/>
-				</a>
-				<a href="google.com" className="flex justify-center">
-					<ExclamationCircleIcon className="h-7 w-7"/>
-				</a>
-			</div>
+			<Menu/>
 		</div>
 	);
 }
