@@ -39,7 +39,7 @@ function HomePage() {
 							<div className="flex justify-left items-center">
 								<ClockIcon className="h-7 w-7"/>
 								<div className="text-left text-sm">
-									12:00 <br className=""/>
+									12:00 <br/>
 									18:00
 								</div>
 							</div>
