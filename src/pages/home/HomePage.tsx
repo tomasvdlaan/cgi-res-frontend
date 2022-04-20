@@ -21,7 +21,7 @@ function HomePage() {
 							2 Reservations today
 						</div>
 					</div>
-					<figure className="bg-slate-100 rounded-xl dark:bg-slate-800">
+					<figure className="bg-slate-100 rounded-xl self-center dark:bg-slate-800">
 						<img className="w-10 h-10 rounded-full clear-right mx-auto" src="images/profile_picture.jpg" alt=""/>
 					</figure>
 				</div>
