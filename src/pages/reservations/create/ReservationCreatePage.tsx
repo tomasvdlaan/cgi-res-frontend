@@ -10,6 +10,15 @@ import React from "react";
 import PlaceholderBlock from "../../../glob-components/PlaceholderBlock";
 
 function ReservationCreatePage() {
+
+	const buildingNumber = "F1";
+	const tableNumber = "A1";
+	const options = {
+		hasMouse: true,
+		hasMonitor: false,
+		hasWebcam: true
+	};
+
 	return (
 		<>
 			<div className="gap-y-4 flex flex-col p-4">
@@ -20,11 +29,13 @@ function ReservationCreatePage() {
 
 
 				<div className="flex flex-col rounded-md bg-white w-50 p-8 drop-shadow-md">
-					<div className="text-left text-xl text-gray font-SofiaProBold flex "> Location
-					</div>
-					<div className="text-right text-sm text-gray font-SofiaProBold flex  "> Accessiores
-					</div>
 
+					<div className="grid gap-x-4 grid-cols-2 justify-center items-center">
+						<div className="justify-center items-center text-xl text-gray font-SofiaProBold flex "> Location
+						</div>
+						<div className="justify-center items-center text-sm text-gray font-SofiaProBold flex  "> Accessiores
+						</div>
+					</div>
 					<div className="grid gap-x-4 grid-cols-2 justify-center items-center">
 
 						<div className="flex flex-col justify-center items-center">
@@ -33,13 +44,13 @@ function ReservationCreatePage() {
 								<div className="flex flex-row items-center">
 									<OfficeBuildingIcon className="h-7 my-3 w-7" />
 									<div className="text-lg ml-2 ">
-										F3
+										{buildingNumber}
 									</div>
 								</div>
 								<div className="flex flex-row items-center">
 									<LocationMarkerIcon className="h-7 w-7" />
 									<div className="text-lg ml-2">
-										A1
+										{tableNumber}
 									</div>
 								</div>
 
@@ -48,12 +59,12 @@ function ReservationCreatePage() {
 						</div>
 						<div className="flex flex-col">
 							<div className="flex my-3 m-2 justify-center items-center">
-								<DesktopComputerIcon className="h-7 w-7 mx-1" />
-								<CursorClickIcon className="h-7 w-7 mx-1" />
-								<VideoCameraIcon className="h-7 w-7 mx-1" />
+								{options.hasMonitor && <DesktopComputerIcon className="h-6 w-6 mx-1" />}
+								{options.hasMouse && <CursorClickIcon className="h-6 w-6 mx-1" />}
+								{options.hasWebcam && <VideoCameraIcon className="h-6 w-6 mx-1" />}
 							</div>
-							<button className="text-lg ml-2">
-								Aanpassen
+							<button className="text-lg text-purple ml-2">
+								<span className="underline"> Aanpassen</span> 〉
 							</button>
 
 						</div>
