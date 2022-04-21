@@ -23,7 +23,7 @@ function HomePage() {
 					</figure>
 				</div>
 			</div>
-			<DatePicker/>
+			<div>DATEPICKER</div>
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
 				Reservations
