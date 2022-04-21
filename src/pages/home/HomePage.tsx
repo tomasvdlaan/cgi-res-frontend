@@ -1,6 +1,5 @@
 import {LocationMarkerIcon, StatusOnlineIcon, CalendarIcon, ClockIcon} from "@heroicons/react/outline";
 import Menu from "../../glob-components/Menu";
-import DatePicker from "../../glob-components/DatePicker";
 
 
 import React from "react";
