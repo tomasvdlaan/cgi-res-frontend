@@ -116,7 +116,10 @@ function HomePage() {
 			</div>
 
 			<div className="p-4 block fixed bottom-16 inset-x-0">
-				<button className="rounded-full bg-purple text-white p-4 w-full">Save Changes</button>
+				<div className="text-sm text-gray text-center font-SofiaProLight p-2">
+					8/24 tables available
+				</div>
+				<button className="rounded-full bg-purple text-white p-4 w-full">Reserve a table</button>
 			</div>
 			<Menu/>
 		</>
