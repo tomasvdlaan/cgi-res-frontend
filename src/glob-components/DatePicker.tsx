@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import config from "../config.json";
 import useDebounce from "../hooks/useDebounce";
 
-function Datepicker(this: any, {
+function DatePicker(this: any, {
 	onPick,
 	startDate,
 	endDate
@@ -61,4 +61,4 @@ function Datepicker(this: any, {
 	);
 }
 
-export default Datepicker;
+export default DatePicker;
