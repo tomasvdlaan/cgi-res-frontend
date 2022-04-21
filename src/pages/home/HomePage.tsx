@@ -3,8 +3,13 @@ import Menu from "../../glob-components/Menu";
 
 
 import React from "react";
+import DatePicker from "../../glob-components/DatePicker";
 
 function HomePage() {
+	const startDate = new Date();
+	const endDate = new Date(startDate);
+	endDate.setMonth(endDate.getMonth() + 3);
+
 	return (
 		<>
 			<div className="bg-light-gray p-6">
@@ -22,7 +27,7 @@ function HomePage() {
 					</figure>
 				</div>
 			</div>
-			<div>DATEPICKER</div>
+			<DatePicker onPick={(date) => console.log(date)} startDate={startDate} endDate={endDate} />
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
 				Reservations
