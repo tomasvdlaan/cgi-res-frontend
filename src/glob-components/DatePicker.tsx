@@ -9,8 +9,8 @@ function DatePicker(this: never, {
 }: { onPick: (Date: Date) => void, startDate: Date, endDate: Date }) {
 	const datepickerRef = useRef<HTMLDivElement>(null);
 	const [dates, setDates] = useState<{day: number, month: string, unix: number}[]>([]);
-	const fn = useDebounce(onPick, 500);
-	const style = "bg-red text-white font-bold";
+	const fn = useDebounce(onPick, 800);
+	const style = "!bg-red text-white font-bold";
 
 	useEffect(() => {
 		const array: {day: number, month: string, unix: number}[] = [];
