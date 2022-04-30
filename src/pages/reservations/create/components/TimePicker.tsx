@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import useRange from "../../../../hooks/useRange";
 import useDebounce from "../../../../hooks/useDebounce";
 
@@ -43,8 +43,8 @@ function TimePicker({onPick}: {onPick: (Date: Date) => void}) {
 					}
 				}
 
-				if (entry.target.getAttribute("data-hour") != null) hour = entry.target.getAttribute("data-hour")!.padStart(2, "0");
-				if (entry.target.getAttribute("data-minute")) minute = entry.target.getAttribute("data-minute")!.padStart(2, "0");
+				if (entry.target.getAttribute("data-hour") != null) hour = (entry.target.getAttribute("data-hour") as string).padStart(2, "0");
+				if (entry.target.getAttribute("data-minute")) minute = (entry.target.getAttribute("data-minute") as string).padStart(2, "0");
 
 				fn(`${hour}:${minute}`);
 
