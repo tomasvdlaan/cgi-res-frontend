@@ -1,13 +1,87 @@
-import {LocationMarkerIcon, StatusOnlineIcon, CalendarIcon, ClockIcon} from "@heroicons/react/outline";
+import {CalendarIcon, ClockIcon, LocationMarkerIcon, StatusOnlineIcon} from "@heroicons/react/outline";
 import Menu from "../../glob-components/Menu";
 import DatePicker from "../../glob-components/DatePicker";
 
+import moment from "moment";
+import React, {useEffect, useState} from "react";
+import {Reservation} from "../reservations/ReservationEntity";
 
-import React from "react";
 
 function HomePage() {
+	const [data, setData] = useState<Reservation[]>([]);
+
+	useEffect(() => {
+		refresh();
+	}, []);
+
+	const refresh = () =>
+		fetch("http://localhost:3001/reservation", { method: "GET", mode: "cors" })
+			.then((result) => result.json())
+			.then((data) => {
+				console.log(data);
+				setData(data);
+			});
+	//
+	// const deleteReservation = (id: number) =>
+	// 	fetch(`http://localhost:3001/reservation/${id}`, {
+	// 		method: "DELETE",
+	// 		mode: "cors",
+	// 	})
+	// 		.then((result) => result.json())
+	// 		.then(() => {
+	// 			refresh();
+	// 		});
+
+	const hourStringer = (start: Date, end: Date) => {
+		const startMoment = moment(start);
+		const endMoment = moment(end);
+
+		let startM = endMoment.minutes().toString();
+		if (startM === "0") {
+			startM = "00";
+		}
+
+		let endM = endMoment.minutes().toString();
+		if (endM === "0") {
+			endM = "00";
+		}
+
+
+		const startHM = ""+ startMoment.hours().toString() +""+":"+ startM +"";
+		const endHM = ""+ endMoment.hour().toString() +""+":"+ endM + "";
+
+		return ""+ startHM + "  "+ endHM+"";
+
+	};
+
+	const timeStart = (start: Date) => {
+		const startMoment = moment(start);
+
+		let startM = startMoment.minutes().toString();
+		if (startM === "0") {startM = "00";}
+
+		return ""+ startMoment.hours().toString() +""+":"+ startM +"";
+	};
+
+	const timeEnd = (end: Date) => {
+		const endMoment = moment(end);
+
+		let endM = endMoment.minutes().toString();
+		if (endM === "0") {endM = "00";}
+
+		return ""+ endMoment.hours().toString() +""+":"+ endM +"";
+	};
+
+
+	const dateStringer = (start: Date) => {
+		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+		const startMoment = moment(start);
+		return "" + startMoment.date().toString() + " " + days[startMoment.day()] + "";
+	};
+
+
 	return (
-		<>
+		<div className="">
 			<div className="bg-light-gray p-6">
 				<div className="grid grid-cols-3 gap-2">
 					<div className="col-span-2">
@@ -31,98 +105,50 @@ function HomePage() {
 
 			<div className="overflow-x-auto no-scrollbar scroll snap-x">
 				<div className="inline-grid grid-flow-col gap-4 p-6 ">
-					<div className="rounded-md bg-white w-36 px-6 py-12 drop-shadow-md">
-						<div className="text text-center font-SofiaProBold grid grid-rows-3">
-							<div className="absolute right-0 top-0 p-3">
-								<StatusOnlineIcon className="h-7 w-7 text-red"/>
-							</div>
-							<div className="flex justify-left items-center">
-								<ClockIcon className="h-7 w-7"/>
-								<div className="text-left text-sm">
-									12:00 <br/>
-									18:00
-								</div>
-							</div>
 
-							<div className="flex justify-left items-center">
-								<CalendarIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									5 Mon
+					{data.map((r: Reservation) => (
+						// eslint-disable-next-line react/jsx-key
+						<div className="rounded-md bg-white w-36 px-6 py-12 drop-shadow-md">
+							<div className="text text-center font-SofiaProBold grid grid-rows-3">
+								<div className="absolute right-0 top-0 p-3 hidden">
+									<StatusOnlineIcon className="h-7 w-7 text-red"/>
 								</div>
-							</div>
-							<div className="flex justify-left items-center">
-								<LocationMarkerIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									A1 - F2
+								<div className="flex justify-left items-center">
+									<ClockIcon className="h-7 w-7"/>
+									<div className="text-left text-sm pl-2">
+										<div className="border-b-2 border-black-500">
+											{timeStart(r.start!)}
+										</div>
+										<div>
+											{timeEnd(r.end!)}
+										</div>
+									</div>
+								</div>
+
+								<div className="flex justify-left items-center">
+									<CalendarIcon className="h-7 w-7"/>
+									<div className="text-lg ">
+										{/*5 Mon*/}
+										{dateStringer(r.start!)}
+									</div>
+								</div>
+								<div className="flex justify-left items-center">
+									<LocationMarkerIcon className="h-7 w-7"/>
+									<div className="text-lg ">{r.workspace?.title} - {r.workspace?.building?.title}
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div className="rounded-md bg-white w-36 px-6 py-12 drop-shadow-md">
-						<div className="text text-center font-SofiaProBold grid grid-rows-3">
-							<div className="absolute right-0 top-0 p-3 hidden">
-								<StatusOnlineIcon className="h-7 w-7 text-red"/>
-							</div>
-							<div className="flex justify-left items-center">
-								<ClockIcon className="h-7 w-7"/>
-								<div className="text-left text-sm">
-									12:00 <br/>
-									18:00
-								</div>
-							</div>
+					))}
 
-							<div className="flex justify-left items-center">
-								<CalendarIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									5 Mon
-								</div>
-							</div>
-							<div className="flex justify-left items-center">
-								<LocationMarkerIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									A1 - F2
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="rounded-md bg-white w-36 px-6 py-12 drop-shadow-md">
-						<div className="text text-center font-SofiaProBold grid grid-rows-3">
-							<div className="absolute right-0 top-0 p-3 hidden">
-								<StatusOnlineIcon className="h-7 w-7 text-red"/>
-							</div>
-							<div className="flex justify-left items-center">
-								<ClockIcon className="h-7 w-7"/>
-								<div className="text-left text-sm">
-									12:00 <br />
-									18:00
-								</div>
-							</div>
-
-							<div className="flex justify-left items-center">
-								<CalendarIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									5 Mon
-								</div>
-							</div>
-							<div className="flex justify-left items-center">
-								<LocationMarkerIcon className="h-7 w-7"/>
-								<div className="text-lg ">
-									A1 - F2
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 
 			<div className="p-4 block fixed bottom-16 inset-x-0">
-				<div className="text-sm text-gray text-center font-SofiaProLight p-2">
-					8/24 tables available
-				</div>
 				<button className="rounded-full bg-purple text-white p-4 w-full">Reserve a table</button>
 			</div>
 			<Menu/>
-		</>
+		</div>
 	);
 }
 
