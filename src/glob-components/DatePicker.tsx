@@ -44,7 +44,7 @@ function DatePicker(this: never, {
 
 	return (
 		<div
-			className="rounded-md bg-white p-4 drop-shadow-md flex flex-row overflow-x-auto no-scrollbar scroll snap-x gap-x-5 datepicker"
+			className="rounded-md bg-white p-4 drop-shadow-md flex flex-row overflow-x-auto no-scrollbar scroll snap-x gap-x-5"
 			ref={datepickerRef}>
 			<div className="w-[50vw] p-4 flex flex-col flex-shrink-0"></div>
 			{dates.map((value, index) =>
