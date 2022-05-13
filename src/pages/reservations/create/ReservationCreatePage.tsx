@@ -1,10 +1,8 @@
 
 import React, { useRef, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import PlaceholderBlock from "../../../glob-components/PlaceholderBlock";
 import StepOne from "./components/Step1";
 import StepTwo from "./components/Step2";
-import TimePicker from "./components/TimePicker";
+import {useNavigate} from "react-router-dom";
 
 function ReservationCreatePage() {
 	const selectedSeat = useRef<number | null>(null);

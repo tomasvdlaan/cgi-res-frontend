@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { OfficeBuildingIcon, LocationMarkerIcon, DesktopComputerIcon, CursorClickIcon, VideoCameraIcon, DatabaseIcon } from "@heroicons/react/outline";
-import PlaceholderBlock from "../../../../glob-components/PlaceholderBlock";
+import React, {useRef, useState } from "react";
+import { OfficeBuildingIcon, LocationMarkerIcon, DesktopComputerIcon, CursorClickIcon, VideoCameraIcon } from "@heroicons/react/outline";
 import TimePicker from "./TimePicker";
 import DatePicker from "../../../../glob-components/DatePicker";
 
