@@ -1,5 +1,6 @@
 import {CalendarIcon, ClockIcon, LocationMarkerIcon, StatusOnlineIcon} from "@heroicons/react/outline";
 import Menu from "../../glob-components/Menu";
+import DatePicker from "../../glob-components/DatePicker";
 
 import moment from "moment";
 import React, {useEffect, useState} from "react";
@@ -17,31 +18,10 @@ function HomePage() {
 		fetch("http://localhost:3001/reservation", { method: "GET", mode: "cors" })
 			.then((result) => result.json())
 			.then((data) => {
+				console.log("test1");
 				console.log(data);
 				setData(data);
 			});
-
-	const hourStringer = (start: Date, end: Date) => {
-		const startMoment = moment(start);
-		const endMoment = moment(end);
-
-		let startM = endMoment.minutes().toString();
-		if (startM === "0") {
-			startM = "00";
-		}
-
-		let endM = endMoment.minutes().toString();
-		if (endM === "0") {
-			endM = "00";
-		}
-
-
-		const startHM = ""+ startMoment.hours().toString() +""+":"+ startM +"";
-		const endHM = ""+ endMoment.hour().toString() +""+":"+ endM + "";
-
-		return ""+ startHM + "  "+ endHM+"";
-
-	};
 
 	const timeStart = (start: Date) => {
 		const startMoment = moment(start);
@@ -49,19 +29,23 @@ function HomePage() {
 		if (startM === "0") {startM = "00";}
 		return ""+ startMoment.hours().toString() +""+":"+ startM +"";
 	};
-
 	const timeEnd = (end: Date) => {
 		const endMoment = moment(end);
 		let endM = endMoment.minutes().toString();
 		if (endM === "0") {endM = "00";}
 		return ""+ endMoment.hours().toString() +""+":"+ endM +"";
 	};
-
 	const dateStringer = (start: Date) => {
 		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 		const startMoment = moment(start);
 		return "" + startMoment.date().toString() + " " + days[startMoment.day()] + "";
 	};
+
+	//DatePicker
+	const startDate = new Date();
+	const endDate = new Date(startDate);
+	endDate.setMonth(endDate.getMonth() + 1);
+
 
 	return (
 		<div className="">
@@ -80,7 +64,9 @@ function HomePage() {
 					</figure>
 				</div>
 			</div>
+
 			<DatePicker onPick={(date) => console.log(date)} startDate={startDate} endDate={endDate} />
+			{/*<DatePicker onPick={(date) => refresh()} startDate={startDate} endDate={endDate} />*/}
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
 				Reservations
