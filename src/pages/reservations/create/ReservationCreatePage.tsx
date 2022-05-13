@@ -10,7 +10,6 @@ function ReservationCreatePage() {
 	const selectedSeat = useRef<number | null>(null);
 	const [currentStep, setCurrentStep] = useState<number>(1);
 	const navigate = useNavigate();
-	
 
 	const buildingNumber = "F1";
 	const tableNumber = "A1";
@@ -28,7 +27,6 @@ function ReservationCreatePage() {
 		selectedSeat.current = id;
 		setCurrentStep(1);
 	};
-
 	
 	const onComplete = () => {
 		// Get data from page
@@ -44,7 +42,6 @@ function ReservationCreatePage() {
 
 	setCurrentStep(1);
 	return (<div>Loading...</div>);
-
 }
 
 export default ReservationCreatePage;
