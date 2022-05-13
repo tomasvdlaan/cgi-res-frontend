@@ -18,8 +18,6 @@ function HomePage() {
 		fetch("http://localhost:3001/reservation", { method: "GET", mode: "cors" })
 			.then((result) => result.json())
 			.then((data) => {
-				console.log("test1");
-				console.log(data);
 				setData(data);
 			});
 

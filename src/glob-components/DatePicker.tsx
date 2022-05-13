@@ -14,7 +14,6 @@ function DatePicker(this: never, {
 
 	useEffect(() => {
 		const array: { day: number, month: string, unix: number }[] = [];
-		console.log("test2");
 		while (startDate <= endDate) {
 			array.push({
 				day: startDate.getDate(),
