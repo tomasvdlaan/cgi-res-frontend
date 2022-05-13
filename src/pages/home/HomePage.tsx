@@ -1,12 +1,10 @@
 import {CalendarIcon, ClockIcon, LocationMarkerIcon, StatusOnlineIcon} from "@heroicons/react/outline";
 import Menu from "../../glob-components/Menu";
-import DatePicker from "../../glob-components/DatePicker";
 
 import moment from "moment";
 import React, {useEffect, useState} from "react";
 import {Reservation} from "../reservations/ReservationEntity";
 import { Link } from "react-router-dom";
-
 
 function HomePage() {
 	const [data, setData] = useState<Reservation[]>([]);
@@ -65,7 +63,6 @@ function HomePage() {
 		return "" + startMoment.date().toString() + " " + days[startMoment.day()] + "";
 	};
 
-
 	return (
 		<div className="">
 			<div className="bg-light-gray p-6">
@@ -83,7 +80,7 @@ function HomePage() {
 					</figure>
 				</div>
 			</div>
-			<DatePicker/>
+			<DatePicker onPick={(date) => console.log(date)} startDate={startDate} endDate={endDate} />
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
 				Reservations
