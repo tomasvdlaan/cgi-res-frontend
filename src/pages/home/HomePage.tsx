@@ -5,6 +5,7 @@ import DatePicker from "../../glob-components/DatePicker";
 import moment from "moment";
 import React, {useEffect, useState} from "react";
 import {Reservation} from "../reservations/ReservationEntity";
+import { Link } from "react-router-dom";
 
 
 function HomePage() {
@@ -21,16 +22,6 @@ function HomePage() {
 				console.log(data);
 				setData(data);
 			});
-	//
-	// const deleteReservation = (id: number) =>
-	// 	fetch(`http://localhost:3001/reservation/${id}`, {
-	// 		method: "DELETE",
-	// 		mode: "cors",
-	// 	})
-	// 		.then((result) => result.json())
-	// 		.then(() => {
-	// 			refresh();
-	// 		});
 
 	const hourStringer = (start: Date, end: Date) => {
 		const startMoment = moment(start);
@@ -56,22 +47,17 @@ function HomePage() {
 
 	const timeStart = (start: Date) => {
 		const startMoment = moment(start);
-
 		let startM = startMoment.minutes().toString();
 		if (startM === "0") {startM = "00";}
-
 		return ""+ startMoment.hours().toString() +""+":"+ startM +"";
 	};
 
 	const timeEnd = (end: Date) => {
 		const endMoment = moment(end);
-
 		let endM = endMoment.minutes().toString();
 		if (endM === "0") {endM = "00";}
-
 		return ""+ endMoment.hours().toString() +""+":"+ endM +"";
 	};
-
 
 	const dateStringer = (start: Date) => {
 		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -128,7 +114,6 @@ function HomePage() {
 								<div className="flex justify-left items-center">
 									<CalendarIcon className="h-7 w-7"/>
 									<div className="text-lg ">
-										{/*5 Mon*/}
 										{dateStringer(r.start!)}
 									</div>
 								</div>
@@ -140,12 +125,13 @@ function HomePage() {
 							</div>
 						</div>
 					))}
-
 				</div>
 			</div>
 
 			<div className="p-4 block fixed bottom-16 inset-x-0">
-				<button className="rounded-full bg-purple text-white p-4 w-full">Reserve a table</button>
+				<button className="rounded-full bg-purple text-white p-4 w-full">
+					<Link to="../reservations/create">Reserve a table</Link>
+				</button>
 			</div>
 			<Menu/>
 		</div>
