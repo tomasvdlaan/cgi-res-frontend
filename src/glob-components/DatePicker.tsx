@@ -48,7 +48,7 @@ function DatePicker(this: never, {
 			ref={datepickerRef}>
 			<div className="w-[50vw] p-4 flex flex-col flex-shrink-0"></div>
 			{dates.map((value, index) =>
-				<div key={index} className="p-4 flex flex-col items-center snap-center rounded-md p-4 bg-white drop-shadow-md min-w-[64px]" ref={el => observer.observe(el as Element)} data-unix={value.unix}>
+				<div key={index} className="p-4 flex flex-col items-center snap-center rounded-md p-4 bg-white drop-shadow-md min-w-[64px]" ref={el => el && observer.observe(el as Element)} data-unix={value.unix}>
 					<div>{value.day}</div>
 					<div>{value.month}</div>
 				</div>
