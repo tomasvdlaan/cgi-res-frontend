@@ -27,13 +27,13 @@ function HomePage() {
 		const startMoment = moment(start);
 		let startM = startMoment.minutes().toString();
 		if (startM === "0") {startM = "00";}
-		return ""+ startMoment.hours().toString() +""+":"+ startM +"";
+		return "" + startMoment.hours().toString() + ":"+ startM +"";
 	};
 	const timeEnd = (end: Date) => {
 		const endMoment = moment(end);
 		let endM = endMoment.minutes().toString();
 		if (endM === "0") {endM = "00";}
-		return ""+ endMoment.hours().toString() +""+":"+ endM +"";
+		return "" + endMoment.hours().toString() + ":"+ endM +"";
 	};
 	const dateStringer = (start: Date) => {
 		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
@@ -86,10 +86,10 @@ function HomePage() {
 									<ClockIcon className="h-7 w-7"/>
 									<div className="text-left text-sm pl-2">
 										<div className="border-b-2 border-black-500">
-											{timeStart(r.start!)}
+											{timeStart(r.start as Date)}
 										</div>
 										<div>
-											{timeEnd(r.end!)}
+											{timeEnd(r.end as Date)}
 										</div>
 									</div>
 								</div>
@@ -97,7 +97,7 @@ function HomePage() {
 								<div className="flex justify-left items-center">
 									<CalendarIcon className="h-7 w-7"/>
 									<div className="text-lg ">
-										{dateStringer(r.start!)}
+										{dateStringer(r.start as Date)}
 									</div>
 								</div>
 								<div className="flex justify-left items-center">
