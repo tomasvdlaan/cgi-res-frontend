@@ -1,13 +1,22 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
+/* eslint-disable react/jsx-key */
+
 import React, { useState } from "react";
 import { DesktopComputerIcon, CursorClickIcon, LocationMarkerIcon, CameraIcon, ChevronRightIcon, ExclamationIcon} from "@heroicons/react/outline";
 import { QrReader } from "react-qr-reader";
 import { Result } from "@zxing/library";
+import { Reservation } from "../ReservationEntity";
+import moment from "moment";
+
 
 type qrResult = Result | null | undefined;
 type qrError = Error | null | undefined;
 
+
+
 function ReservationDetailPage() {
-	const [data, setData] = useState("No result");
+	const [data1, setData] = useState("No result");
+	const [data, setReservation] = useState<Reservation[]>([]);
 
 	const onResult = (result: qrResult, error: qrError) => {
 		if (result) {
@@ -19,21 +28,27 @@ function ReservationDetailPage() {
 		}
 	};
 
+	const refresh = () =>
+		fetch("http://localhost:3002/reservation", { method: "GET", mode: "cors" })
+			.then((result) => result.json())
+			.then((data) => {
+				console.log(data);
+				setData(data);
+			});
+
+	
+	
+
 	return (
 		
 		<>
-			
+		
 			<div>
 				<h1 className=" font-SofiaProBold text-left text-black text-2xl pt-12 pl-5 " >Scan to sign in</h1>
 			</div>
 			<div className="pt-14"></div>
 			<QrReader constraints={{facingMode: "environment", aspectRatio: 1/1}} onResult={onResult} className="p-4 "/>		
-			
-			
-			
-			
-			
-			
+		
 
 			<div className="block bottom-0 rounded-md fixed inset-x-0">
 				<div className="rounded-md bg-white h-52 p-6 h-full drop-shadow-2xl">
@@ -94,3 +109,5 @@ function ReservationDetailPage() {
 }
 
 export default ReservationDetailPage;
+
+
