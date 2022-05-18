@@ -1,4 +1,4 @@
-import { BaseEntity } from "../Helper/BaseEntity";
+import { BaseEntity } from "../helper/BaseEntity";
 
 export class Building extends BaseEntity {
 	title?: string;

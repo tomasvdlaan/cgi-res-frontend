@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import config from "../config.json";
 import useDebounce from "../hooks/useDebounce";
 
+
 function DatePicker(this: never, {
 	onPick,
 	startDate,
@@ -40,7 +41,6 @@ function DatePicker(this: never, {
 				const rawUnixDate = entry.target.getAttribute("data-unix");
 				if (rawUnixDate) fn(new Date(Number(rawUnixDate) * 1000));
 			}
-
 
 		});
 	}, ioConfiguration);

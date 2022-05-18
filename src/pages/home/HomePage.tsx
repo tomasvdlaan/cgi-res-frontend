@@ -2,47 +2,36 @@ import {CalendarIcon, ClockIcon, LocationMarkerIcon, StatusOnlineIcon} from "@he
 import Menu from "../../glob-components/Menu";
 import DatePicker from "../../glob-components/DatePicker";
 
-import moment from "moment";
 import React, {useEffect, useState} from "react";
 import {Reservation} from "../reservations/ReservationEntity";
+import DateHelper from "../../helper/DateHelper";
 import { Link } from "react-router-dom";
 
 function HomePage() {
 	const [data, setData] = useState<Reservation[]>([]);
 
-	useEffect(() => {
-		refresh();
-	}, []);
+	const startDate = new Date(Date.now());
+	const endDate = new Date(startDate);
+	endDate.setMonth(endDate.getMonth() + 1);
 
-	const refresh = () =>
-		fetch("http://localhost:3001/reservation", { method: "GET", mode: "cors" })
+	useEffect(() => {
+		fetch("http://localhost:3001/reservation", {method: "GET", mode: "cors"})
 			.then((result) => result.json())
 			.then((data) => {
 				setData(data);
 			});
-
-	const timeStart = (start: Date) => {
-		const startMoment = moment(start);
-		let startM = startMoment.minutes().toString();
-		if (startM === "0") {startM = "00";}
-		return "" + startMoment.hours().toString() + ":"+ startM +"";
-	};
-	const timeEnd = (end: Date) => {
-		const endMoment = moment(end);
-		let endM = endMoment.minutes().toString();
-		if (endM === "0") {endM = "00";}
-		return "" + endMoment.hours().toString() + ":"+ endM +"";
-	};
-	const dateStringer = (start: Date) => {
-		const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		const startMoment = moment(start);
-		return "" + startMoment.date().toString() + " " + days[startMoment.day()] + "";
-	};
-
-	//DatePicker
-	const startDate = new Date();
-	const endDate = new Date(startDate);
-	endDate.setMonth(endDate.getMonth() + 1);
+	}, []);
+	//
+	// const fetchFromDay = (selectedDate: Date) => {
+	// 	fetch("http://localhost:3001/reservation", {method: "GET", mode: "cors"})
+	// 		.then((result) => result.json())
+	// 		.then((data) => {
+	//
+	// 			console.log(selectedDate);
+	//
+	// 			// setData(data);
+	// 		});
+	// };
 
 
 	return (
@@ -63,8 +52,7 @@ function HomePage() {
 				</div>
 			</div>
 
-			<DatePicker onPick={(date) => console.log(date)} startDate={startDate} endDate={endDate} />
-			{/*<DatePicker onPick={(date) => refresh()} startDate={startDate} endDate={endDate} />*/}
+			<DatePicker onPick={(date) => console.log()} startDate={startDate} endDate={endDate} />
 
 			<div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
 				Reservations
@@ -84,23 +72,23 @@ function HomePage() {
 									<ClockIcon className="h-7 w-7"/>
 									<div className="text-left text-sm pl-2">
 										<div className="border-b-2 border-black-500">
-											{timeStart(r.start as Date)}
+											{r.start && DateHelper.getTimeString(new Date(r.start))}
 										</div>
 										<div>
-											{timeEnd(r.end as Date)}
+											{r.end && DateHelper.getTimeString(new Date(r.end))}
 										</div>
 									</div>
 								</div>
 
 								<div className="flex justify-left items-center">
 									<CalendarIcon className="h-7 w-7"/>
-									<div className="text-lg ">
-										{dateStringer(r.start as Date)}
+									<div className="text-lg pl-1">
+										{r.start && DateHelper.getMinifiedDateString(new Date(r.start))}
 									</div>
 								</div>
 								<div className="flex justify-left items-center">
 									<LocationMarkerIcon className="h-7 w-7"/>
-									<div className="text-lg ">{r.workspace?.title} - {r.workspace?.building?.title}
+									<div className="text-lg pl-2">{r.workspace?.title} - {r.workspace?.building?.title}
 									</div>
 								</div>
 							</div>

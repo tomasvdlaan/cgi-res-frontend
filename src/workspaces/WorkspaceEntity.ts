@@ -1,4 +1,4 @@
-import { BaseEntity } from "../Helper/BaseEntity";
+import { BaseEntity } from "../helper/BaseEntity";
 import { Building } from "../buildings/BuildingEntity";
 
 export class Workspace extends BaseEntity {
