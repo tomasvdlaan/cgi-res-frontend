@@ -3,9 +3,9 @@ import Menu from "../../glob-components/Menu";
 import DatePicker from "../../glob-components/DatePicker";
 
 import React, {useEffect, useState} from "react";
-import {Reservation} from "../reservations/ReservationEntity";
-import DateHelper from "../../helper/DateHelper";
+import Reservation from "../../entities/ReservationEntity";
 import { Link } from "react-router-dom";
+import DateUtil from "../../utils/DateUtil";
 
 function HomePage() {
 	const [data, setData] = useState<Reservation[]>([]);
@@ -72,10 +72,10 @@ function HomePage() {
 									<ClockIcon className="h-7 w-7"/>
 									<div className="text-left text-sm pl-2">
 										<div className="border-b-2 border-black-500">
-											{r.start && DateHelper.getTimeString(new Date(r.start))}
+											{r.start && DateUtil.getTimeString(new Date(r.start))}
 										</div>
 										<div>
-											{r.end && DateHelper.getTimeString(new Date(r.end))}
+											{r.end && DateUtil.getTimeString(new Date(r.end))}
 										</div>
 									</div>
 								</div>
@@ -83,7 +83,7 @@ function HomePage() {
 								<div className="flex justify-left items-center">
 									<CalendarIcon className="h-7 w-7"/>
 									<div className="text-lg pl-1">
-										{r.start && DateHelper.getMinifiedDateString(new Date(r.start))}
+										{r.start && DateUtil.getMinifiedDateString(new Date(r.start))}
 									</div>
 								</div>
 								<div className="flex justify-left items-center">
