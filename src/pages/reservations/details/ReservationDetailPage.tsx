@@ -1,8 +1,8 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/jsx-key */
 
-import React, { useState, useEffect } from "react";
-import { DesktopComputerIcon, CursorClickIcon, LocationMarkerIcon, CameraIcon, ChevronRightIcon, ExclamationIcon} from "@heroicons/react/outline";
+import React, { useState, useEffect, useRef } from "react";
+import { DesktopComputerIcon, CursorClickIcon, LocationMarkerIcon, CameraIcon, ChevronRightIcon, ExclamationIcon, SearchIcon } from "@heroicons/react/outline";
 import { QrReader } from "react-qr-reader";
 import { Result } from "@zxing/library";
 import { useParams } from "react-router-dom";
@@ -12,11 +12,12 @@ import Reservation from "../../../entities/ReservationEntity";
 type qrResult = Result | null | undefined;
 type qrError = Error | null | undefined;
 
-
-
 function ReservationDetailPage() {
 	const [reservationDetails, setReservationDetails] = useState<Reservation | null>(null);
+	const [hasVisibilePopup, setVisibilePopup] = useState<boolean>(false);
 	const { reservationId: id } = useParams();
+
+
 
 	useEffect(() => {
 		fetch(`${config.apiUrl}/reservation/${id}`, { method: "GET", mode: "cors" })
@@ -39,10 +40,78 @@ function ReservationDetailPage() {
 		}
 	};
 
+	const openPopup = () => {
+		setVisibilePopup(true);
+	};
+
+	const closePopup = (event?: any) => {
+		setVisibilePopup(false);
+
+		if (event) {
+			event.target.title.value = "";
+			event.target.description.value = "";
+			event.target.urgency.value = "";
+		}
+	}; 
+
+	const onSubmit = (event: any) => {
+		event.preventDefault();
+	
+
+		fetch(`${config.apiUrl}/problem`, {method: "POST", mode: "cors", body: JSON.stringify({
+			title: event.target.title.value,
+			description: event.target.description.value,
+			urgency: event.target.urgency.value,
+		})});
+
+		closePopup(event);
+
+
+	};
 
 	return (
 		
 		<>
+			{/* hidden class om te hidden */}
+			<form className={`absolute bottom-0 bg-white z-50 w-full  ${hasVisibilePopup ? "" : "hidden"}`} onSubmit={onSubmit}>
+				<div className="rounded-md  bg-white px-4 pt-5 pb-8 font-SofiaProBold text-left text-lg  drop-shadow-2xl font-extrabold">
+					<div className="pt-3">
+						<hr className="flex-grow border-2 w-16 mx-auto rounded border-gray"/>
+					</div>
+					<h1 className="pb-2 pl-1"> Problem</h1>
+					
+					<p className="text-sm text-gray pl-1 font-bold"> Describe the problem </p>
+					
+					<div className="pt-2 relative mx-auto text-gray w-full">
+						<input className="text-gray bg-light-gray h-8 px-5 w-full rounded-lg focus:outline-none" type="text" placeholder="Title" name="title"/>
+					</div>
+
+					<div className="pt-2 relative mx-auto text-gray w-full">
+						<textarea className="text-gray bg-light-gray h-8 px-5 w-full rounded-lg focus:outline-none" name="description" placeholder="Write here..."/>
+					</div>
+
+					<p className="text-sm pl-1 text-gray font-bold pt-4">Urgency</p>
+					<div>
+						<input type="range" name="urgency" className="w-full" 
+							min="0" max="5" step="1"></input>
+					</div>
+					<br></br>
+					<div className=" grid gap-x-4 grid-cols-2 justify-center items-center">
+				    <button type="submit" className="rounded-full bg-light-purple text-black p-4 w-full">Back</button>
+						<button type="submit" className="rounded-full bg-purple text-white p-4 w-full">Confirm</button>
+					</div>
+					
+				</div>
+			</form>
+			
+
+                    
+
+
+
+                    
+		
+
 		
 			<div>
 				<h1 className=" font-SofiaProBold text-left text-black text-2xl pt-12 pl-5 " >Scan to sign in</h1>
@@ -83,7 +152,8 @@ function ReservationDetailPage() {
 						</div>
 
 						<div className="flex font-SofiaProBold">
-							<button className="text-purple">Report issue</button>
+							<button onClick={openPopup} className="text-purple">Report issue</button>
+							
 							<ChevronRightIcon className="h-4 w-4 self-center text-purple"/>
 						</div>
 
