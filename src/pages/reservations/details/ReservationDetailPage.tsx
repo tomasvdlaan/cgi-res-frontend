@@ -1,13 +1,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable react/jsx-key */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DesktopComputerIcon, CursorClickIcon, LocationMarkerIcon, CameraIcon, ChevronRightIcon, ExclamationIcon} from "@heroicons/react/outline";
 import { QrReader } from "react-qr-reader";
 import { Result } from "@zxing/library";
-import { Reservation } from "../ReservationEntity";
-
-
+import { useParams } from "react-router-dom";
+import config from "../../../config.json";
+import Reservation from "../../../entities/ReservationEntity";
 
 type qrResult = Result | null | undefined;
 type qrError = Error | null | undefined;
@@ -15,23 +15,30 @@ type qrError = Error | null | undefined;
 
 
 function ReservationDetailPage() {
-	const [, setData] = useState("No result");
-	const [] = useState<Reservation[]>([]);
+	const [reservationDetails, setReservationDetails] = useState<Reservation | null>(null);
+	const { reservationId: id } = useParams();
+
+	useEffect(() => {
+		fetch(`${config.apiUrl}/reservation/${id}`, { method: "GET", mode: "cors" })
+			.then((result) => result.json())
+			.then((data) => {
+				setReservationDetails(data);
+			});
+	}, [id]);
+	
 
 	const onResult = (result: qrResult, error: qrError) => {
-		if (result) {
-			setData(result?.getText());
+		if (result === reservationDetails?.qrToken) {
+			setReservationDetails({...reservationDetails, isPresent: true});
+
+			fetch(`${config.apiUrl}/reservation/${id}`, { method: "PUT", mode: "cors", body: JSON.stringify(reservationDetails)  });
 		}
 
 		if (error) {
-			console.info(error);
+			console.log(error);
 		}
 	};
 
-	
-
-	
-	
 
 	return (
 		
@@ -54,7 +61,7 @@ function ReservationDetailPage() {
 						</div>
 						<div className="flex justify-end font-SofiaProBold">
 							<div className="text-lg ">
-                                Fri, 2 Apr
+								{reservationDetails?.workspace?.building?.title ?? ""}
 							</div>
 						</div>
 						<div className="text-lg text-gray">
@@ -63,7 +70,7 @@ function ReservationDetailPage() {
 						<div className="flex justify-end font-SofiaProBold">
 							<LocationMarkerIcon className="h-7 w-7"/>
 							<div className="text-lg ">
-                                A2
+								{reservationDetails?.workspace?.title}
 							</div>
 						</div>
 						<div className="text-lg text-gray ">
