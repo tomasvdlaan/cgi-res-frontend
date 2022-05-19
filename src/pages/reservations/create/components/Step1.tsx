@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import { OfficeBuildingIcon, LocationMarkerIcon, DesktopComputerIcon, CursorClickIcon, VideoCameraIcon } from "@heroicons/react/outline";
 import TimePicker from "./TimePicker";
 import DatePicker from "../../../../glob-components/DatePicker";

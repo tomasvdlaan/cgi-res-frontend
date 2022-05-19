@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import config from "../../../../config.json";
-import {CalendarIcon, LocationMarkerIcon, StatusOnlineIcon} from "@heroicons/react/outline";
+import {LocationMarkerIcon} from "@heroicons/react/outline";
 import {SearchIcon} from "@heroicons/react/outline";
 import Workspace from "../../../../entities/WorkspaceEntity";
 
@@ -12,7 +12,6 @@ function StepTwo({
 	onSelect
 }: { buildingNumber: string, tableNumber: string, options: { hasWebcam?: boolean, hasMonitor?: boolean, hasMouse?: boolean }, onSelect: (id: number, name: string) => void }) {
 	const [data, setData] = useState<Workspace[]>([]);
-	// const selectedSeat = useRef<number | null>(null);
 
 	useEffect(() => {
 		refresh();
