@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import config from "../../../../config.json";
+import config from "../../../config.json";
 import {LocationMarkerIcon} from "@heroicons/react/outline";
 import {SearchIcon} from "@heroicons/react/outline";
-import Workspace from "../../../../entities/WorkspaceEntity";
+import Workspace from "../../../entities/WorkspaceEntity";
 
 
 function StepTwo({
@@ -17,15 +17,6 @@ function StepTwo({
 		refresh();
 	}, []);
 
-
-	// const selectWorkspace( (id: number) => {
-	// 		selectedSeat.current = id;
-	// 		setCurrentStep(1);
-	//
-	// 	return id;
-	// })
-
-
 	const refresh = () =>
 		fetch(`${config.apiUrl}/workspace`, { method: "GET", mode: "cors" })
 			.then((result) => result.json())
@@ -37,8 +28,8 @@ function StepTwo({
 		<>
 			<div className="bg-white-gray p-6">
 				<div className="grid">
-					<div className="text-2xl font-SofiaProBold">
-						Select a Seat
+					<div className="text-2xl font-SofiaProBold font-bold">
+						Overview
 					</div>
 					<div className="pt-2 relative mx-auto text-gray w-full">
 						<input className="text-gray bg-light-gray h-8 px-5 w-full rounded-lg focus:outline-none" type="search" name="search" placeholder="Search"/>
