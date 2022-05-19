@@ -6,7 +6,7 @@ import { DesktopComputerIcon, CursorClickIcon, LocationMarkerIcon, CameraIcon, C
 import { QrReader } from "react-qr-reader";
 import { Result } from "@zxing/library";
 import { Reservation } from "../ReservationEntity";
-import moment from "moment";
+
 
 
 type qrResult = Result | null | undefined;
@@ -15,8 +15,8 @@ type qrError = Error | null | undefined;
 
 
 function ReservationDetailPage() {
-	const [data1, setData] = useState("No result");
-	const [data, setReservation] = useState<Reservation[]>([]);
+	const [, setData] = useState("No result");
+	const [] = useState<Reservation[]>([]);
 
 	const onResult = (result: qrResult, error: qrError) => {
 		if (result) {
@@ -28,13 +28,7 @@ function ReservationDetailPage() {
 		}
 	};
 
-	const refresh = () =>
-		fetch("http://localhost:3002/reservation", { method: "GET", mode: "cors" })
-			.then((result) => result.json())
-			.then((data) => {
-				console.log(data);
-				setData(data);
-			});
+	
 
 	
 	
