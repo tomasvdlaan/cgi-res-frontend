@@ -6,6 +6,7 @@ import {
 import LoginPage from "./pages/login/LoginPage";
 import ReservationsOverviewPage from "./pages/reservations/overview/ReservationsOverviewPage";
 import HomePage from "./pages/home/HomePage";
+import TabletPage from "./pages/tablet/TabletPage";
 import NotFoundPage from "./pages/notfound/NotFoundPage";
 import IssuesOverviewPage from "./pages/issues/overview/IssuesOverviewPage";
 import IssueDetailPage from "./pages/issues/details/IssueDetailPage";
@@ -21,6 +22,7 @@ function Router () {
 				<Route path="/404" element={<NotFoundPage />}/>
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/" element={<HomePage />} />
+				<Route path="/tablet" element={<TabletPage />} />
 
 				{/* Route: /reservations */}
 				<Route path="/reservations/create" element={<ReservationCreatePage />} />
