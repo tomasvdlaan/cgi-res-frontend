@@ -1,3 +1,5 @@
 {
-  "months": [ "Jan", "Feb", "Mrt", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ]
+  "months": [ "Jan", "Feb", "Mrt", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec" ],
+  "shortDays": ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+  "apiUrl": "http://localhost:3001"
 }
