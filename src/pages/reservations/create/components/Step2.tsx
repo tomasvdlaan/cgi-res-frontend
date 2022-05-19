@@ -1,13 +1,39 @@
-import React from "react";
-
+import React, {useEffect, useRef, useState} from "react";
+import config from "../../../../config.json";
+import {CalendarIcon, LocationMarkerIcon, StatusOnlineIcon} from "@heroicons/react/outline";
 import {SearchIcon} from "@heroicons/react/outline";
+import Workspace from "../../../../entities/WorkspaceEntity";
+
 
 function StepTwo({
 	buildingNumber,
 	tableNumber,
 	options,
 	onSelect
-}: { buildingNumber: string, tableNumber: string, options: { hasWebcam?: boolean, hasMonitor?: boolean, hasMouse?: boolean }, onSelect: (id: number) => void }) {
+}: { buildingNumber: string, tableNumber: string, options: { hasWebcam?: boolean, hasMonitor?: boolean, hasMouse?: boolean }, onSelect: (id: number, name: string) => void }) {
+	const [data, setData] = useState<Workspace[]>([]);
+	// const selectedSeat = useRef<number | null>(null);
+
+	useEffect(() => {
+		refresh();
+	}, []);
+
+
+	// const selectWorkspace( (id: number) => {
+	// 		selectedSeat.current = id;
+	// 		setCurrentStep(1);
+	//
+	// 	return id;
+	// })
+
+
+	const refresh = () =>
+		fetch(`${config.apiUrl}/workspace`, { method: "GET", mode: "cors" })
+			.then((result) => result.json())
+			.then((data) => {
+				setData(data);
+			});
+
 	return (
 		<>
 			<div className="bg-white-gray p-6">
@@ -24,14 +50,17 @@ function StepTwo({
 				</div>
 			</div>
 
-			<div className="grid grid-cols-3 gap-3">
-				<div>01</div>
-				<div>02</div>
-				<div>03</div>
-				<div>09</div>
+			<div className="grid grid-cols-3 gap-3 p-5 px-14">
+				{data.map((w: Workspace) => (
+					// eslint-disable-next-line react/jsx-key
+					<button onClick={() => onSelect(w.id ? w.id : 1, w.title ? w.title : "A1")} className="rounded-md bg-white first:bg-red first:text-white px-2 py-7 drop-shadow-md flex justify-center">
+						<LocationMarkerIcon className="h-7 w-7"/>
+						<div className="text-lg text-center">
+							{w.title}
+						</div>
+					</button>
+				))}
 			</div>
-
-
 		</>
 	);
 }
