@@ -1,17 +1,15 @@
-import {
-	BrowserRouter,
-	Routes,
-	Route, Navigate
-} from "react-router-dom";
-import LoginPage from "./pages/login/LoginPage";
-import ReservationsOverviewPage from "./pages/reservations/overview/ReservationsOverviewPage";
-import HomePage from "./pages/home/HomePage";
-import NotFoundPage from "./pages/notfound/NotFoundPage";
-import IssuesOverviewPage from "./pages/issues/overview/IssuesOverviewPage";
-import IssueDetailPage from "./pages/issues/details/IssueDetailPage";
-import ReservationDetailPage from "./pages/reservations/details/ReservationDetailPage";
-import ReservationCreatePage from "./pages/reservations/create/ReservationCreatePage";
 import React from "react";
+import {
+	BrowserRouter, Navigate, Route, Routes
+} from "react-router-dom";
+import HomePage from "./pages/home/HomePage";
+import IssueDetailPage from "./pages/issues/details/IssueDetailPage";
+import IssuesOverviewPage from "./pages/issues/overview/IssuesOverviewPage";
+import LoginPage from "./pages/login/LoginPage";
+import NotFoundPage from "./pages/notfound/NotFoundPage";
+import ReservationCreatePage from "./pages/reservations/create/ReservationCreatePage";
+import ReservationDetailPage from "./pages/reservations/details/ReservationDetailPage";
+import ReservationsOverviewPage from "./pages/reservations/overview/ReservationsOverviewPage";
 
 function Router () {
 	return (
