@@ -7,6 +7,8 @@ class Reservation extends BaseEntity {
 	userId?: string;
 	secret?: string;
 	workspace?: Workspace;
+	isPresent?: boolean;
+	qrToken?: string;
 }
 
 export default Reservation;
