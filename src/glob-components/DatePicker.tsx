@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
-import config from "../config.json";
+import { default as config } from "../config.json";
 import useDebounce from "../hooks/useDebounce";
 
 function DatePicker(this: never, {
