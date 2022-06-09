@@ -1,11 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import {
-	CalendarIcon,
-	ClockIcon,
-	LocationMarkerIcon
+  ArrowRightIcon,
+  CalendarIcon,
+  ClockIcon,
+  LocationMarkerIcon,
+  PlusCircleIcon
 } from "@heroicons/react/outline";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Reservation from "../../entities/ReservationEntity";
 import Menu from "../../glob-components/Menu";
 
@@ -22,7 +25,7 @@ function HomePage() {
   const [selectedDate, setSelectedDate] = useState<{
     date: number;
     month: string;
-  }>({ date: 16, month: "May" });
+  }>({ date: 20, month: "May" });
 
   const startDate = new Date();
   const endDate = new Date(startDate);
@@ -42,11 +45,6 @@ function HomePage() {
   }, []);
 
   const dates = [
-    { date: 14, month: "May" },
-    { date: 15, month: "May" },
-    { date: 16, month: "May" },
-    { date: 17, month: "May" },
-    { date: 18, month: "May" },
     { date: 19, month: "May" },
     { date: 20, month: "May" },
     { date: 21, month: "May" },
@@ -54,6 +52,19 @@ function HomePage() {
     { date: 23, month: "May" },
     { date: 24, month: "May" },
     { date: 25, month: "May" },
+    { date: 26, month: "May" },
+    { date: 27, month: "May" },
+    { date: 28, month: "May" },
+    { date: 29, month: "May" },
+    { date: 30, month: "May" },
+    { date: 31, month: "May" },
+    { date: 1, month: "June" },
+    { date: 2, month: "June" },
+    { date: 3, month: "June" },
+    { date: 4, month: "June" },
+    { date: 5, month: "June" },
+    { date: 6, month: "June" },
+    { date: 7, month: "June" },
   ];
 
   return (
@@ -64,7 +75,7 @@ function HomePage() {
             <div className="flex-1 flex flex-col">
               <span className="text-2xl">Welcome {user?.name}</span>
               <span className="text-gray">
-                {reservations.length} reservations today
+                {reservations.length} reservations planned
               </span>
             </div>
             <div>
@@ -93,7 +104,10 @@ function HomePage() {
       <div className="overflow-x-scroll p-6 space-x-4 flex flex-row">
         {dates.map((d) =>
           d.date == selectedDate.date ? (
-            <div className="rounded bg-red-500 text-white py-2 cursor-pointer">
+            <div
+              className="rounded bg-red-500 text-white py-2 cursor-pointer"
+              key={d.date}
+            >
               <div className="w-20 h-20 flex items-center justify-center">
                 <span className="text-4xl font-bold">{d.date}</span>
               </div>
@@ -104,6 +118,7 @@ function HomePage() {
           ) : (
             <div
               className="rounded bg-gray-200 py-2 cursor-pointer"
+              key={d.date}
               onClick={() => setSelectedDate(d)}
             >
               <div className="w-20 h-20 flex items-center justify-center">
@@ -133,38 +148,58 @@ function HomePage() {
         endDate={endDate}
       /> */}
 
-      <div className="px-6 pt-4 text text-xl text-gray font-SofiaProBold">
-        Reservations
+      <div className="px-6 pt-4 space-x-4 flex flex-row items-center">
+        <span className="font-bold text-2xl">Reservations</span>
+        <Link
+          to="/reservations"
+          className="text-gray-500 font-light italic flex flex-row space-x-2 items-center"
+        >
+          <span>See more</span>
+          <ArrowRightIcon className="w-4" />
+        </Link>
       </div>
 
-      <div className="flex flex-row p-6">
-        {reservations.map((r) => (
-          <div className="flex flex-col rounded shadow p-4 bg-gray-100 space-y-4 w-48">
-            <div className="flex-1 flex flex-row items-center space-x-4">
-              <ClockIcon className="h-8" />
-              <div className="flex-1 flex flex-col font-bold">
-                <span>{moment(r.start).format("HH:mm")}</span>
-                <hr />
-                <span>{moment(r.end).format("HH:mm")}</span>
+      <div className="flex flex-row p-6 space-x-4">
+        {reservations.map((r, index) => (
+          <Link to={`/reservations/${r.id}`} key={index}>
+            <div className="flex flex-col rounded shadow p-4 bg-gray-100 space-y-4 w-56">
+              <div className="flex-1 flex flex-row items-center space-x-4">
+                <ClockIcon className="h-8" />
+                <div className="flex-1 flex flex-col font-bold">
+                  <span>{moment(r.start).format("HH:mm")}</span>
+                  <hr />
+                  <span>{moment(r.end).format("HH:mm")}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="flex-1 flex flex-row items-center space-x-4">
-              <CalendarIcon className="h-8" />
-              <div className="flex-1 font-bold">
-                <span>{moment(r.start).format("D MMMM")}</span>
+              <div className="flex-1 flex flex-row items-center space-x-4">
+                <CalendarIcon className="h-8" />
+                <div className="flex-1 font-bold">
+                  <span>{moment(r.start).format("D MMMM")}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="flex-1 flex flex-row items-center space-x-4">
-              <LocationMarkerIcon className="h-8" />
-              <div className="flex-1 flex flex-col ">
-                <span className="font-bold">{r.workspace?.title}</span>
-                <span className="italic text-gray-500">{r.workspace?.building?.title}</span>
+              <div className="flex-1 flex flex-row items-center space-x-4">
+                <LocationMarkerIcon className="h-8" />
+                <div className="flex-1 flex flex-col ">
+                  <span className="font-bold">{r.workspace?.title}</span>
+                  <span className="italic text-gray-500">
+                    {r.workspace?.building?.title}
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
+
+        <Link
+          to="/reservations/create"
+          className="flex rounded shadow p-4 bg-gray-100 space-y-4 w-48 items-center justify-center"
+        >
+          <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
+            <PlusCircleIcon className="w-10 text-gray-300" />
+          </div>
+        </Link>
       </div>
 
       <div className="overflow-x-auto no-scrollbar scroll snap-x">
@@ -242,14 +277,14 @@ function HomePage() {
         </div>
       </div>
 
-      <div className="p-4 block fixed bottom-16 inset-x-0">
+      {/* <div className="p-4 block fixed bottom-16 inset-x-0">
         <div className="text-sm text-gray text-center font-SofiaProLight p-2">
           8/24 tables available
         </div>
         <button className="rounded-full bg-purple text-white p-4 w-full">
           Reserve a table
         </button>
-      </div>
+      </div> */}
       <Menu />
     </>
   );
