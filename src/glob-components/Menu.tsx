@@ -13,7 +13,7 @@ function Menu() {
 			<Link to="/workspaces" className="flex justify-center">
 				<UserGroupIcon className="h-7 w-7"/>
 			</Link>
-			<Link to="google.com" className="flex justify-center">
+			<Link to="/issues" className="flex justify-center">
 				<ExclamationCircleIcon className="h-7 w-7"/>
 			</Link>
 		</div>
