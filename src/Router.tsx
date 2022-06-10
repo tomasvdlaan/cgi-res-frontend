@@ -13,6 +13,7 @@ import ReservationDetailPage from "./pages/reservations/details/ReservationDetai
 import ReservationsOverviewPage from "./pages/reservations/overview/ReservationsOverviewPage";
 import WorkspaceDetails from "./pages/workspaces/WorkspaceDetails";
 import WorkspaceOverview from "./pages/workspaces/WorkspaceOverview";
+import IssueCreatePage from "./pages/issues/create/issueCreatePage";
 
 function Router () {
 	return (
@@ -36,6 +37,7 @@ function Router () {
 
 				{/* Route: /issues */}
 				<Route path="/issues/:issueId" element={<IssueDetailPage />} />
+				<Route path="/issues/create" element={<IssueCreatePage />} />
 				<Route path="/issues" element={<IssuesOverviewPage />} />
 
 				{/* NIET VERPLAATSEN!! */}

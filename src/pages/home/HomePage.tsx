@@ -192,10 +192,7 @@ function HomePage() {
 					</Link>
 				))}
 
-				<Link
-					to="/reservations/create"
-					className="flex rounded shadow p-4 bg-gray-100 space-y-4 w-48 items-center justify-center"
-				>
+				<Link to="/reservations/create"	className="flex rounded shadow p-4 bg-gray-100 space-y-4 w-48 items-center justify-center">
 					<div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
 						<PlusCircleIcon className="w-10 text-gray-300"/>
 					</div>

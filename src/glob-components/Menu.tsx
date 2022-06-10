@@ -1,5 +1,3 @@
-
-
 import { ExclamationCircleIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/outline";
 import React from "react";
 import { Link } from "react-router-dom";
