@@ -1,5 +1,3 @@
-
-
 import { ExclamationCircleIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/outline";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -13,7 +11,7 @@ function Menu() {
 			<Link to="/workspaces" className="flex justify-center">
 				<UserGroupIcon className="h-7 w-7"/>
 			</Link>
-			<Link to="google.com" className="flex justify-center">
+			<Link to="/issues" className="flex justify-center">
 				<ExclamationCircleIcon className="h-7 w-7"/>
 			</Link>
 		</div>

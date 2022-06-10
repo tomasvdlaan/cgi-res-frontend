@@ -37,8 +37,6 @@ function DatePicker(this: never, {
 				const rawUnixDate = entry.target.getAttribute("data-unix");
 				if (rawUnixDate) fn(new Date(Number(rawUnixDate)*1000));
 			}
-
-
 		});
 	}, ioConfiguration);
 
