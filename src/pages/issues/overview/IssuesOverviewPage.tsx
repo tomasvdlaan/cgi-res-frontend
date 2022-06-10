@@ -1,4 +1,4 @@
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {useAuth0} from "@auth0/auth0-react";
 import DateTimePicker from "react-datetime-picker";
@@ -7,6 +7,7 @@ import {CheckIcon, XIcon} from "@heroicons/react/outline";
 import Menu from "../../../glob-components/Menu";
 import Problem from "../../../entities/ProblemEntity";
 import problemEntity from "../../../entities/ProblemEntity";
+import {isNumber} from "util";
 
 function IssuesOverviewPage() {
 	const {
@@ -28,7 +29,6 @@ function IssuesOverviewPage() {
 
 	const refresh = async () => {
 		let url = "http://localhost:3001/problem?includePast=true";
-
 		if (start) url += `&start=${start.toISOString()}`;
 		if (end) url += `&end=${end.toISOString()}`;
 
@@ -42,24 +42,25 @@ function IssuesOverviewPage() {
 			});
 	};
 
-	// const updateProblems = (key: keyof problemEntity, value: any) => {
-	// 	setProblems({ ...problems, [key]: value });
-	// };
-
 	function closeProblem(id: number | undefined) {
 		alert(id);
+		const now = new Date();
+		const key = problems.findIndex(x => x.id === id);
+		const CheckedObject = problems[key].solvedAt = now;
+		
+		console.log(CheckedObject);
+		console.log(problems[key]);
+		console.log(JSON.stringify(problems));
 
-		//
-		// fetch(`http://localhost:3001/problem/${id}`, {
-		// 	method: "GET",
-		// 	mode: "cors",
-		// })
-		// 	.then((result) => result.json())
-		// 	.then((data) => {
-		// 		console.log(data);
-		// 		// updateProblems(data);
-		// 	});
 
+		fetch("http://localhost:3001/problem/", {
+			method: "PUT",
+			// mode: "cors",
+			body: JSON.stringify(problems[key]),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
 	}
 
 	useEffect(() => {
