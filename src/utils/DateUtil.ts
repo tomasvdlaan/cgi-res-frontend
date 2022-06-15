@@ -1,4 +1,4 @@
-import {shortDays} from "../config.json";
+import shortDays from "../config.json";
 
 class DateUtil {
 	public static getTimeString(date: Date) {
@@ -6,7 +6,7 @@ class DateUtil {
 	}
 
 	public static getMinifiedDateString(date: Date) {
-		return `${date.getDate()} ${shortDays[date.getDay()]}`;
+		return `${date.getDate()} ${shortDays.shortDays[date.getDay()]}`;
 	}
 }
 
