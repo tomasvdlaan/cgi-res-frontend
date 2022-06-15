@@ -1,4 +1,4 @@
-import BaseEntity  from "./BaseEntity";
+import BaseEntity from "./BaseEntity";
 import Workspace from "./WorkspaceEntity";
 
 class Reservation extends BaseEntity {
@@ -7,7 +7,7 @@ class Reservation extends BaseEntity {
 	userId?: string;
 	secret?: string;
 	workspace?: Workspace;
-	isPresent?: boolean;
+	scannedAt?: Date;
 	qrToken?: string;
 }
 

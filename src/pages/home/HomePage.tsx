@@ -21,17 +21,6 @@ function HomePage() {
 				setData(data);
 			});
 	}, []);
-	//
-	// const fetchFromDay = (selectedDate: Date) => {
-	// 	fetch("http://localhost:3001/reservation", {method: "GET", mode: "cors"})
-	// 		.then((result) => result.json())
-	// 		.then((data) => {
-	//
-	// 			console.log(selectedDate);
-	//
-	// 			// setData(data);
-	// 		});
-	// };
 
 
 	return (
@@ -105,6 +94,7 @@ function HomePage() {
 			<Menu/>
 		</div>
 	);
+
 }
 
 export default HomePage;
