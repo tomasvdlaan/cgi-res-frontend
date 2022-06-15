@@ -10,6 +10,7 @@ const QrCodePage = () => {
 
 	const [reservation, setReservation] = useState<Reservation>();
 
+
 	const refresh = () => {
 		fetch(`${config.apiUrl}/reservation/${id}`, { method: "GET", mode: "cors" })
 			.then((result) => result.json())
@@ -20,13 +21,14 @@ const QrCodePage = () => {
 
 	useEffect(() => {
 		refresh();
-	}, []);
+	}, [refresh]);
+
 
 	return (
 		<div className="bg-red-100 p-12 h-screen">
 			<div className="flex flex-row bg-white rounded-xl w-full h-full">
 				<div className="flex items-center justify-center flex-1">
-					<QRCodeCanvas value={reservation?.secret!} size={512} />
+					<QRCodeCanvas value={reservation!.secret!} size={512} />
 				</div>
 				<div className="flex items-center flex-1">
 					<div className="flex flex-col">

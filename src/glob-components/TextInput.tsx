@@ -16,7 +16,7 @@ const TextInput = (props: TextInputProps) => {
 			<input
 				type="text"
 				onChange={(text) => (onChange ? onChange(text.target.value) : null)}
-				value={value ? value : ""}
+				defaultValue={value ? value : ""}
 				className="border border-gray-200 rounded p-2"
 				placeholder={props.placeholder ? props.placeholder : props.title}
 			/>

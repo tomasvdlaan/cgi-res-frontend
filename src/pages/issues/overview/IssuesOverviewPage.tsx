@@ -43,15 +43,10 @@ function IssuesOverviewPage() {
 	};
 
 	function closeProblem(id: number | undefined) {
-		alert(id);
-		const now = new Date();
-		const key = problems.findIndex(x => x.id === id);
-		const CheckedObject = problems[key].solvedAt = now;
-		
-		console.log(CheckedObject);
-		console.log(problems[key]);
-		console.log(JSON.stringify(problems));
 
+
+		const key = problems.findIndex(x => x.id === id);
+		problems[key].solvedAt = new Date();
 
 		fetch("http://localhost:3001/problem/", {
 			method: "PUT",

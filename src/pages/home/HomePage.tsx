@@ -275,7 +275,7 @@ function HomePage() {
 			</div>
 
 			{/* <div className="p-4 block fixed bottom-16 inset-x-0">
-        <div className="text-sm text-gray text-center font-SofiaProLight p-2">
+        <div className="text-sm3 text-gray text-center font-SofiaProLight p-2">
           8/24 tables available
         </div>
         <button className="rounded-full bg-purple text-white p-4 w-full">
