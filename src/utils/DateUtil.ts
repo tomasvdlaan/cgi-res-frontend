@@ -12,6 +12,10 @@ class DateUtil {
 	public static getDateString(date: Date) {
 		return `${date.getDate()} ${date.getMonth()}`;
 	}
+
+	public static getFullDateTimeString(date: Date) {
+		return `${date.getDate()} ${date.getMonth()} ${date.getHours()}:${date.getMinutes()}`;
+	}
 }
 
 export default DateUtil;
